@@ -1,11 +1,47 @@
 {
-  "site": { "name": "Your business" },
-  "nav": { "links": [{ "label": "Home", "href": "/" }], "cta": { "label": "Get in touch", "href": "#contact" } },
-  "hero": {
-    "eyebrow": "",
-    "headline": "A headline of a few words",
-    "sub": "One line under it, and no more.",
-    "cta": { "label": "Get in touch", "href": "#contact" }
+  "site": { "name": "Nhà hàng Mây" },
+  "nav": {
+    "links": [
+      { "label": "The menu", "href": "#menu" },
+      { "label": "Book", "href": "#book" },
+      { "label": "Directions", "href": "#directions" }
+    ],
+    "cta": { "label": "Book a table", "href": "#book" }
   },
-  "footer": { "line": "Your business · District 1, Saigon" }
+  "hero": {
+    "headline": "Vietnamese lunch and dinner",
+    "sub": "District 3 cooking: bún bò, claypot fish, broken rice, cold beer.",
+    "cta": { "label": "Book a table", "href": "#book" }
+  },
+  "menu": {
+    "heading": "The menu",
+    "note": "Open daily 11:00–22:00.",
+    "items": [
+      { "name": "Bún bò Huế", "detail": "Beef shank, lemongrass broth, herbs", "price": "145k" },
+      { "name": "Cá kho tộ", "detail": "Claypot fish, caramel, steamed rice", "price": "180k" },
+      { "name": "Cơm tấm sườn", "detail": "Broken rice, grilled pork chop, egg", "price": "135k" },
+      { "name": "Gỏi cuốn", "detail": "Prawn rolls, pork, peanut sauce", "price": "95k" }
+    ]
+  },
+  "book": {
+    "heading": "Book a table",
+    "body": "Call for tonight, or send a booking request. The team will confirm by phone.",
+    "phoneLabel": "Call",
+    "phone": "+84 28 3930 1212",
+    "form": {
+      "name": "Name",
+      "phone": "Phone",
+      "time": "Date and time",
+      "guests": "Guests",
+      "submit": "Send request"
+    }
+  },
+  "directions": {
+    "heading": "Where we are",
+    "address": "12 Trần Quốc Thảo, District 3, Saigon",
+    "body": "Ten minutes from Turtle Lake. Motorbike parking is beside the yellow gate.",
+    "map": "Map: Trần Quốc Thảo and Nguyễn Đình Chiểu",
+    "cta": "Get directions"
+  },
+  "footer": { "line": "Nhà hàng Mây · 12 Trần Quốc Thảo, District 3 · 11:00–22:00" }
 }
