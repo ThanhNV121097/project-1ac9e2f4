@@ -1,32 +1,34 @@
-import { T, useList, useContent } from "./editable";
+import { T, useList } from "./editable";
+import BookingSection from "./components/BookingSection";
+import DirectionsSection from "./components/DirectionsSection";
+import MenuSection from "./components/MenuSection";
 
-/**
- * The shell the design replaces.
- *
- * This file is a placeholder so the scaffold builds and runs before the
- * design exists. The team rewrites it and adds components under
- * src/components/; what must stay is the rule every component follows: the
- * words come from content.json through <T/>, the colours from theme.css.
- */
 export default function App() {
   const links = useList<{ label: string; href: string }>("nav.links");
-  const name = useContent("site.name");
+
   return (
     <div className="min-h-screen bg-ground text-ink font-body">
-      <header className="mx-auto max-w-page px-[var(--gutter)] py-6 flex items-center justify-between">
-        <T k="site.name" as="a" href="/" className="font-display text-lg" />
-        <nav className="flex gap-6 text-sm">
-          {links.map((l, i) => <T key={i} k={`nav.links.${i}.label`} as="a" href={l.href} />)}
-          <T k="nav.cta.label" as="a" href="#contact" className="rounded bg-accent px-4 py-2 text-accent-ink" />
+      <header className="mx-auto flex max-w-page items-center justify-between px-[var(--gutter)] py-6">
+        <T k="site.name" as="a" href="/" className="font-display text-2xl" />
+        <nav className="hidden items-center gap-8 text-sm sm:flex">
+          {links.map((l, i) => <T key={l.href} k={`nav.links.${i}.label`} as="a" href={l.href} />)}
+          <T k="nav.cta.label" as="a" href="#book" className="rounded bg-accent px-5 py-3 text-accent-ink" />
         </nav>
       </header>
-      <main className="mx-auto max-w-page px-[var(--gutter)] py-24">
-        <T k="hero.headline" as="h1" className="text-[clamp(44px,7vw,104px)] max-w-[14ch]" />
-        <T k="hero.sub" as="p" className="mt-6 text-xl text-ink-soft max-w-[48ch]" />
-        <T k="hero.cta.label" as="a" href="#contact" className="mt-10 inline-block rounded bg-accent px-6 py-3 text-accent-ink" />
+      <main className="mx-auto max-w-page px-[var(--gutter)]">
+        <section className="grid min-h-[76vh] items-center py-24">
+          <div className="max-w-[58rem]">
+            <T k="hero.headline" as="h1" className="text-[clamp(58px,9vw,132px)]" />
+            <T k="hero.sub" as="p" className="mt-8 max-w-[46rem] text-xl text-ink-soft" />
+            <T k="hero.cta.label" as="a" href="#book" className="mt-12 inline-block rounded bg-accent px-7 py-4 text-accent-ink" />
+          </div>
+        </section>
+        <MenuSection />
+        <BookingSection />
+        <DirectionsSection />
       </main>
-      <footer className="mx-auto max-w-page px-[var(--gutter)] py-12 text-sm text-ink-soft border-t border-line">
-        <T k="footer.line" /> · {name}
+      <footer className="mx-auto max-w-page px-[var(--gutter)] py-12 text-sm text-ink-soft">
+        <T k="footer.line" />
       </footer>
     </div>
   );
