@@ -1,0 +1,21 @@
+/* The design's tokens. Every colour, face and shape on the site is one of
+   these, so the owner changes the whole site by changing a value here — in
+   the Studio, without a rebuild. Components never carry a raw colour. */
+:root {
+  --ground: #F6F2EA;
+  --surface: #FFFFFF;
+  --ink: #1B1917;
+  --ink-soft: #5E5954;
+  --accent: #B8412E;
+  --accent-ink: #FFFFFF;
+  --line: rgba(27, 25, 23, 0.12);
+
+  --font-display: "Fraunces";
+  --font-body: "Inter";
+  --weight-display: 500;
+  --tracking-display: -0.02em;
+
+  --radius: 12px;
+  --page: 1160px;
+  --gutter: clamp(20px, 5.5vw, 72px);
+}
