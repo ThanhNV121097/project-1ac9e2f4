@@ -252,10 +252,10 @@ jobs:
           if [ ${#files[@]} -eq 0 ]; then exit 0; fi
           used=$(grep -rhoE 'var\(--[a-z0-9-]+' "${files[@]}" | sed 's/var(//' | sort -u)
           if [ -z "$used" ]; then exit 0; fi
-          defined=$(grep -hoE '^[[:space:]]*--[a-z0-9-]+' code/frontend/app/globals.css 2>/dev/null | tr -d ' ' | sort -u)
+          defined=$(grep -hoE '^[[:space:]]*--[a-z0-9-]+' code/frontend/app/globals.css code/frontend/src/theme.css 2>/dev/null | tr -d ' ' | sort -u)
           missing=$(comm -23 <(echo "$used") <(echo "$defined") || true)
           if [ -n "$missing" ]; then
-            echo "::error::Tokens used but never defined in app/globals.css — they render as nothing, silently:"
+            echo "::error::Tokens used but never defined in the token stylesheet (app/globals.css or src/theme.css) — they render as nothing, silently:"
             echo "$missing"
             exit 1
           fi
@@ -273,11 +273,16 @@ jobs:
         run: |
           set -euo pipefail
           ds=design/design-system.md
-          if [ ! -f "$ds" ] || [ ! -f code/frontend/app/globals.css ]; then
-            echo "::notice::No design system or no globals.css yet."
+          # Tokens live in app/globals.css on a Next.js frontend and in
+          # src/theme.css on one designed in code (Vite + React); either is
+          # the token file, and a project has exactly one of them.
+          tokens=code/frontend/app/globals.css
+          [ -f "$tokens" ] || tokens=code/frontend/src/theme.css
+          if [ ! -f "$ds" ] || [ ! -f "$tokens" ]; then
+            echo "::notice::No design system or no token stylesheet yet."
             exit 0
           fi
-          defined=$(grep -hoE '^[[:space:]]*--[a-z0-9-]+' code/frontend/app/globals.css | tr -d ' ' | sort -u)
+          defined=$(grep -hoE '^[[:space:]]*--[a-z0-9-]+' "$tokens" | tr -d ' ' | sort -u)
           approved=$(grep -hoE '\-\-[a-z0-9-]+' "$ds" | sort -u)
           stray=$(comm -23 <(echo "$defined") <(echo "$approved") || true)
           if [ -n "$stray" ]; then
