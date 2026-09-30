@@ -1,5 +1,5 @@
 import { createElement, useSyncExternalStore, type ElementType } from "react";
-import initial from "./content.json";
+import initial from "./lib/mock/the-site-as-designed";
 
 /**
  * The copy on the site, and the owner's hand on it.
